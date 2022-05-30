@@ -24,6 +24,7 @@ qibuild make body
 For desktop
 
 ```bash
+wget https://the-social-robot.s3.eu-west-2.amazonaws.com/nao-2.1.4.13/naoqi-sdk-2.1.4.13-linux64.tar.gz
 qitoolchain create naoqi-sdk /path/to/cpp/sdk/toolchain.xml
 qibuild add-config naoqi-sdk --toolchain naoqi-sdk
 qibuild configure -c naoqi-sdk body
@@ -33,6 +34,7 @@ qibuild make -c naoqi-sdk body
 For robot
 
 ```bash
+wget https://the-social-robot.s3.eu-west-2.amazonaws.com/nao-2.1.4.13/ctc-linux64-atom-2.1.4.13.zip
 qitoolchain create cross-atom /path/to/ctc/toolchain.xml
 qibuild add-config cross-atom --toolchain cross-atom
 qibuild configure -c cross-atom body
