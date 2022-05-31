@@ -5,10 +5,12 @@ on:
     branches: [ main ]
     paths:
       - 'build-image/**'
+      - '.github/workflows/**'
   pull_request:
     branches: [ main ]
     paths:
       - 'build-image/**'
+      - '.github/workflows/**'
 
 jobs:
 
