@@ -1,0 +1,22 @@
+name: Build build image
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'build-image/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'build-image/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file build-image/Dockerfile --tag nao-build:$(date +%s)
