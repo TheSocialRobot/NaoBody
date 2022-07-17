@@ -13,18 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: thesocialrobot/naobuild:main
-      options: --user root
+      options: --user 1000
     steps:
     - uses: actions/checkout@v3
-    - name: debug
-      shell: bash
-      run: ls -laR
-    - run: ls -l /app/.local/lib/python3.9/site-packages
-    - run: printenv
-    - run: python --version
     - name: build desktop
       shell: bash
       run: ./make-desktop.sh
     - name: build robot
       shell: bash
-      run: ./make-desktop.sh
+      run: ./make-robot.sh
