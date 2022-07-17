@@ -19,9 +19,11 @@ jobs:
     - name: debug
       shell: bash
       run: ls -laR
+    - run: ls -l /app/.local/bin
+    - run: ls -l /opt/toolchains
     - name: build desktop
       shell: bash
-      run: make-desktop.sh
+      run: ./make-desktop.sh
     - name: build robot
       shell: bash
-      run: make-desktop.sh
+      run: ./make-desktop.sh
