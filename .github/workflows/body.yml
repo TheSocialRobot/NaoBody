@@ -21,6 +21,9 @@ jobs:
       run: ls -laR
     - run: ls -l /app/.local/bin
     - run: ls -l /opt/toolchains
+    - run: ls -l /app/.local/lib/python3.9/site-packages
+    - run: printenv
+    - run: python --versions
     - name: build desktop
       shell: bash
       run: ./make-desktop.sh
