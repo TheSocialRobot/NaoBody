@@ -18,6 +18,12 @@ jobs:
     - name: debug
       shell: bash
       run: ls -laR
+    - name: whoami
+      shell: bash
+      run: id
+    - name: configs
+      shell: bash
+      run: qibuild list-configs
     - name: build desktop
       shell: bash
       run: ./make-desktop.sh
