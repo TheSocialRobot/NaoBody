@@ -25,10 +25,10 @@ jobs:
       shell: bash
       run: echo $HOME
     - name: files where they should be
-      shell:
+      shell: bash
       run: ls -la /app/config/qi
     - name: files where they should be 2
-      shell:
+      shell: bash
       run: ls -la /app/config/qi/toolchains
     - name: cat me
       shell: bash
