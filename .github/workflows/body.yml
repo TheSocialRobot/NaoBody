@@ -21,6 +21,18 @@ jobs:
     - name: whoami
       shell: bash
       run: id
+    - name: home sweet home
+      shell: bash
+      run: echo $HOME
+    - name: files where they should be
+      shell:
+      run: ls -la /app/config/qi
+    - name: files where they should be 2
+      shell:
+      run: ls -la /app/config/qi/toolchains
+    - name: cat me
+      shell: bash
+      run: cat ~/.config/qi/qibuild.xml
     - name: configs
       shell: bash
       run: qibuild list-configs
