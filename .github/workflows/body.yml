@@ -8,6 +8,9 @@ on:
   workflow_dispatch:
     branches: [ main ]
 
+env:
+  HOME: /app
+
 jobs:
   build:
     runs-on: ubuntu-latest
