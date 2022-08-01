@@ -31,21 +31,18 @@ jobs:
       run: ./make-desktop.sh
     - name: Archive desktop build output
       uses: actions/upload-artifact@v3
-      env:
-        OUTPUT: ${{ format('{0}/{1}', env.GITHUB_WORKSPACE, env.DESKTOP_OUT) }}
       with:
           name: desktop-binaries
-          path: ${{ env.OUTPUT }}
+          path: ${{ format('{0}/{1}', github.workspace, env.DESKTOP_OUT) }}
+      with:
     - name: Build robot
       shell: bash
       run: ./make-robot.sh
     - name: Archive robot build output
       uses: actions/upload-artifact@v3
-      env:
-        OUTPUT: ${{ format('{0}/{1}', env.GITHUB_WORKSPACE, env.ROBOT_OUT) }}
       with:
           name: robot-binaries
-          path: ${{ env.OUTPUT }}
+          path: ${{ format('{0}/{1}', github.workspace, env.ROBOT_OUT) }}
     - name: output debug
       shell: bash
-      run: find $env.GITHUB_WORKSPACE. -name test_body -print
+      run: find ${{ github.workspace }} -name test_body -print
