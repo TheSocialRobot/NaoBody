@@ -26,17 +26,16 @@ jobs:
     - name: List qibuild configs
       shell: bash
       run: qibuild list-configs
+
     - name: Build desktop
       shell: bash
       run: ./make-desktop.sh
-    - name: check expression
-      shell: bash
-      run: echo ${{ format('{0}/{1}', github.workspace, env.DESKTOP_OUT) }}
     - name: Archive desktop build output
       uses: actions/upload-artifact@v3
       with:
           name: desktop-binaries
           path: ${{ format('{0}/{1}', github.workspace, env.DESKTOP_OUT) }}
+
     - name: Build robot
       shell: bash
       run: ./make-robot.sh
@@ -45,6 +44,3 @@ jobs:
       with:
           name: robot-binaries
           path: ${{ format('{0}/{1}', github.workspace, env.ROBOT_OUT) }}
-    - name: output debug
-      shell: bash
-      run: find ${{ github.workspace }} -name test_body -print
