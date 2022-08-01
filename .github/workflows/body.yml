@@ -13,8 +13,8 @@ env:
   HOME: /app
   # build directoies take their names from toolchain
   # TODO replace scripts with use of context from build
-  DESKTOP_OUT: /app/build/body/build-naoqi-sdk/sdk/bin
-  ROBOT_OUT: /app/build/body/build-cross-atom/sdk/bin
+  DESKTOP_OUT: body/build-naoqi-sdk/sdk/bin
+  ROBOT_OUT: body/build-cross-atom/sdk/bin
 
 jobs:
   build:
@@ -31,17 +31,21 @@ jobs:
       run: ./make-desktop.sh
     - name: Archive desktop build output
       uses: actions/upload-artifact@v3
+      env:
+        OUTPUT: ${{ format('{0}/{1}', env.GITHUB_WORKSPACE, env.DESKTOP_OUT) }}
       with:
           name: desktop-binaries
-          path: ${{ env.DESKTOP_OUT }}
+          path: ${{ env.OUTPUT }}
     - name: Build robot
       shell: bash
       run: ./make-robot.sh
     - name: Archive robot build output
       uses: actions/upload-artifact@v3
+      env:
+        OUTPUT: ${{ format('{0}/{1}', env.GITHUB_WORKSPACE, env.ROBOT_OUT) }}
       with:
           name: robot-binaries
-          path: ${{ env.ROBOT_OUT }}
+          path: ${{ env.OUTPUT }}
     - name: output debug
       shell: bash
-      run: find /app -name test_body -print
+      run: find $env.GITHUB_WORKSPACE. -name test_body -print
