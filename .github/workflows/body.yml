@@ -11,7 +11,7 @@ on:
 env:
   # the image assumes HOME is /app, but GitHub actions sets it to be /github/home
   HOME: /app
-  # build directoies take their names from toolchain
+  # build directories take their names from toolchain
   # TODO replace scripts with use of context from build
   DESKTOP_OUT: body/build-naoqi-sdk/sdk/bin
   ROBOT_OUT: body/build-cross-atom/sdk/bin
