@@ -42,3 +42,6 @@ jobs:
       with:
           name: robot-binaries
           path: ${{ env.ROBOT_OUT }}
+    - name: output debug
+      shell: bash
+      run: find /app -name test_body -print
