@@ -11,6 +11,10 @@ on:
 env:
   # the image assumes HOME is /app, but GitHub actions sets it to be /github/home
   HOME: /app
+  # build directoies take their names from toolchain
+  # TODO replace scripts with use of context from build
+  DESKTOP_OUT: /app/build/body/build-naoqi-sdk/sdk/bin
+  ROBOT_OUT: /app/build/body/build-cross-atom/sdk/bin
 
 jobs:
   build:
@@ -19,12 +23,22 @@ jobs:
       image: thesocialrobot/naobuild:main
     steps:
     - uses: actions/checkout@v3
-    - name: configs
+    - name: List qibuild configs
       shell: bash
       run: qibuild list-configs
-    - name: build desktop
+    - name: Build desktop
       shell: bash
       run: ./make-desktop.sh
-    - name: build robot
+    - name: Archive desktop build output
+      uses: actions/upload-artifact@v3
+      with:
+          name: desktop-binaries
+          path: ${{ env.DESKTOP_OUT }}
+    - name: Build robot
       shell: bash
       run: ./make-robot.sh
+    - name: Archive robot build output
+      uses: actions/upload-artifact@v3
+      with:
+          name: robot-binaries
+          path: ${{ env.ROBOT_OUT }}
