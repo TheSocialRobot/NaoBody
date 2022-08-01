@@ -29,6 +29,9 @@ jobs:
     - name: Build desktop
       shell: bash
       run: ./make-desktop.sh
+    - name: check expression
+      shell: bash
+      run: echo ${{ format('{0}/{1}', github.workspace, env.DESKTOP_OUT) }}
     - name: Archive desktop build output
       uses: actions/upload-artifact@v3
       with:
