@@ -34,7 +34,6 @@ jobs:
       with:
           name: desktop-binaries
           path: ${{ format('{0}/{1}', github.workspace, env.DESKTOP_OUT) }}
-      with:
     - name: Build robot
       shell: bash
       run: ./make-robot.sh
