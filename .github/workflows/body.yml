@@ -9,6 +9,7 @@ on:
     branches: [ main ]
 
 env:
+  # the image assumes HOME is /app, but GitHub actions sets it to be /github/home
   HOME: /app
 
 jobs:
@@ -18,24 +19,6 @@ jobs:
       image: thesocialrobot/naobuild:main
     steps:
     - uses: actions/checkout@v3
-    - name: debug
-      shell: bash
-      run: ls -laR
-    - name: whoami
-      shell: bash
-      run: id
-    - name: home sweet home
-      shell: bash
-      run: echo $HOME
-    - name: files where they should be
-      shell: bash
-      run: ls -la /app/.config/qi
-    - name: files where they should be 2
-      shell: bash
-      run: ls -la /app/.config/qi/toolchains
-    - name: cat me
-      shell: bash
-      run: cat ~/.config/qi/qibuild.xml
     - name: configs
       shell: bash
       run: qibuild list-configs
