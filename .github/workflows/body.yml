@@ -27,6 +27,7 @@ jobs:
       shell: bash
       run: qibuild list-configs
 
+      # TODO use matrix build?
     - name: Build desktop
       shell: bash
       run: ./make-desktop.sh
