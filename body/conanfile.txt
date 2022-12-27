@@ -1,6 +1,0 @@
-[requires]
-grpc/1.48.0
-protobuf/3.21.4
-
-[generators]
-cmake
