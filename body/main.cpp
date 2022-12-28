@@ -27,6 +27,8 @@ using grpc::Status;
 using thesocialrobot::TheSocialRobot;
 using thesocialrobot::BodyEvent;
 using thesocialrobot::BodyCommand;
+using thesocialrobot::Action;
+using thesocialrobot::Say;
 
 BodyEvent MakeBodyEvent(const int id) {
     BodyEvent e;
@@ -60,6 +62,19 @@ public:
         BodyCommand command;
         while (stream->Read(&command)) {
             std::cout << "Got message " << command.id()  << std::endl;
+            for (const Action& action: command.actions()) {
+                switch (action.action_case()) {
+                    case Action::kSay:
+                    {
+                        const Say& say = action.say();
+                        std::cout << "Say: '" << say.text() << "' with delay " << action.delay() << std::endl;
+                        break;
+                    }
+                    default:
+                        std::cout << "invalid action" << std::endl;
+                        break;
+                }
+            }
         }
         writer.join();
         Status status = stream->Finish();
