@@ -13,23 +13,35 @@ env:
   HOME: /app
   # build directories take their names from toolchain
   # TODO replace scripts with use of context from build
-  DESKTOP_OUT: body/build-naoqi-sdk/sdk/bin
-  ROBOT_OUT: body/build-cross-atom/sdk/bin
+  DESKTOP_OUT: NaoBody/body/build-naoqi-sdk/sdk/bin
+  ROBOT_OUT: NaoBody/body/build-cross-atom/sdk/bin
 
 jobs:
   build:
     runs-on: ubuntu-latest
     container: 
-      image: thesocialrobot/naobuild:main
+      # generally using the latest tag is not a great idea, but in this case it's under our control
+      image: thesocialrobot/naobuild:latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout body
+      uses: actions/checkout@v3
+      with:
+          path: 'NaoBody'
+    - name: Checkout brain code
+      uses: actions/checkout@v3
+      with:
+          repository: TheSocialRobot/BrainCore
+          path: 'BrainCore'
+
     - name: List qibuild configs
       shell: bash
       run: qibuild list-configs
 
+      # TODO use matrix build?
     - name: Build desktop
       shell: bash
       run: ./make-desktop.sh
+      working-directory: ./NaoBody
     - name: Archive desktop build output
       uses: actions/upload-artifact@v3
       with:
@@ -39,6 +51,7 @@ jobs:
     - name: Build robot
       shell: bash
       run: ./make-robot.sh
+      working-directory: ./NaoBody
     - name: Archive robot build output
       uses: actions/upload-artifact@v3
       with:

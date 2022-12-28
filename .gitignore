@@ -1,3 +1,7 @@
+# CLion
+body/cmake-build-debug/
+.idea
+
 # qibuild related
 .qi/path.conf
 body/build*
