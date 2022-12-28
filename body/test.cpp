@@ -1,7 +1,8 @@
 /*
- * Copyright (c) 2012-2021 SoftBank Robotics. All rights reserved.
- * Use of this source code is governed by a BSD-style license that can be
- * found in the COPYING file.
+ * Copyright (c) 2022-2023 David Snowdon
+ * Licensed under  GNU General Public License, Version 3 (the "License");
+ * You may not use this file except in compliance with the License.
+ * A copy of the license is contained in the file LICENSE in the root of this repo.
  */
 #include <iostream>
 
