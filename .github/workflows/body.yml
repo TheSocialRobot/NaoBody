@@ -22,7 +22,7 @@ jobs:
     container: 
       image: thesocialrobot/naobuild:main
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: List qibuild configs
       shell: bash
       run: qibuild list-configs
